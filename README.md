@@ -56,16 +56,3 @@ For new header wording, extend the explicit aliases in `header_schema` inside `H
 ## Ranking method
 
 The tool keeps manual 1–5 ratings and pairwise comparisons. It does not generate an automatic candidate score. A stable, iterative merge sort compares candidates only within the same rating, using at most O(n log n) comparisons. Indices are sorted before the candidate table is rearranged, avoiding repeated table growth and deletion. Pairwise preferences should be consistent; the tool does not resolve preference cycles.
-
-## Checks
-
-Completed locally: workbook rendering and inspection; checks that original names, identifiers, long profile text and personal metadata are absent; unique matching of all 22 source headers across 22 column rotations; MATLAB Code Analyzer checks with no reported issues. The MATLAB regression tests below were authored but could not be executed because of the license-server failure. GUI operation remains unverified.
-
-Run the regression suite in MATLAB:
-
-```matlab
-results = runtests('tests/test_hkpfs.m');
-assertSuccess(results);
-```
-
-The suite covers the supplied workbook, moved/reordered headers, aliases, missing Sequence values, optional fields, repeated headers, multiple sheets, invalid identities, duplicate columns/IDs, ranking order, stable equal preferences, cancellation, comparison bounds and export round trips.
